@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code 產生器</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+<div class="header">
+    <h1>QR Code 產生器</h1>
+    <div class="subtitle">產生讓同事掃描的 QR Code</div>
+</div>
+
+<div class="main">
+    <div class="qr-section">
+        <p style="color:var(--text-muted);margin-bottom:16px;">
+            輸入 Quiz 頁面的網址，產生 QR Code 讓同事掃描
+        </p>
+
+        <div class="qr-input-group">
+            <input type="text" id="qr-url" placeholder="http://192.168.1.100:8080">
+            <button onclick="generateQR()">產生</button>
+        </div>
+
+        <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px;">
+            💡 提示：輸入你電腦的區域網路 IP，例如 http://192.168.1.100:8080<br>
+            同事需要在同一個 Wi-Fi 下才能連線
+        </p>
+
+        <div id="qr-output"></div>
+
+        <div id="qr-actions" style="display:none;margin-top:20px;">
+            <button class="btn-primary" onclick="downloadQR()">下載 QR Code</button>
+            <button class="btn-secondary" onclick="copyURL()" style="margin-left:8px;">複製網址</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function generateQR() {
+    const url = document.getElementById('qr-url').value.trim();
+    if (!url) {
+        alert('請輸入網址');
+        return;
+    }
+
+    const container = document.getElementById('qr-output');
+    container.innerHTML = '';
+
+    new QRCode(container, {
+        text: url,
+        width: 256,
+        height: 256,
+        colorDark: '#f0f6fc',
+        colorLight: '#0d1117',
+        correctLevel: QRCode.CorrectLevel.M
+    });
+
+    document.getElementById('qr-actions').style.display = 'block';
+}
+
+function downloadQR() {
+    const canvas = document.querySelector('#qr-output canvas');
+    if (!canvas) return;
+
+    const link = document.createElement('a');
+    link.download = 'quiz-qr-code.png';
+    link.href = canvas.toDataURL();
+    link.click();
+}
+
+function copyURL() {
+    const url = document.getElementById('qr-url').value;
+    navigator.clipboard.writeText(url).then(() => {
+        alert('已複製！');
+    });
+}
+</script>
+</body>
+</html>

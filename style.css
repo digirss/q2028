@@ -1,0 +1,689 @@
+/* ========================================
+   0528 QA Quiz - Style
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --card: #21262d;
+    --border: #30363d;
+    --text: #f0f6fc;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-red: #f85149;
+    --accent-yellow: #d29922;
+    --accent-purple: #bc8cff;
+    --radius: 12px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ---- Header ---- */
+.header {
+    text-align: center;
+    padding: 24px 16px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* ---- Score Bar ---- */
+.score-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.score-bar .score {
+    color: var(--accent-green);
+    font-weight: 600;
+}
+
+.score-bar .progress {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-reset {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.btn-reset:active {
+    background: var(--border);
+}
+
+.score-bar .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+}
+
+.score-bar .dot.done {
+    background: var(--accent-green);
+}
+
+.score-bar .dot.current {
+    background: var(--accent);
+}
+
+/* ---- Main Content ---- */
+.main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 16px;
+}
+
+/* ---- Unit Cards ---- */
+.unit-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.unit-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.unit-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.unit-card.completed {
+    border-color: var(--accent-green);
+    opacity: 0.8;
+}
+
+.unit-card .unit-icon {
+    font-size: 2rem;
+    min-width: 48px;
+    text-align: center;
+}
+
+.unit-card .unit-info h3 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.unit-card .unit-info p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.unit-card .unit-status {
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.unit-card.completed .unit-status {
+    color: var(--accent-green);
+}
+
+/* ---- Game Page ---- */
+.game-page {
+    display: none;
+}
+
+.game-page.active {
+    display: block;
+}
+
+.game-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.btn-back {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-back:hover {
+    background: var(--border);
+}
+
+.game-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* ---- Question Cards ---- */
+.question-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.question-card h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.question-card .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.question-card .option {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.question-card .option:hover {
+    border-color: var(--accent);
+}
+
+.question-card .option.correct {
+    border-color: var(--accent-green);
+    background: rgba(63, 185, 80, 0.1);
+}
+
+.question-card .option.wrong {
+    border-color: var(--accent-red);
+    background: rgba(248, 81, 73, 0.1);
+}
+
+.question-card .option.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.question-card .explanation {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--surface);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: none;
+}
+
+.question-card .explanation.show {
+    display: block;
+}
+
+/* ---- Matching Game (Unit 2) ---- */
+.match-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.match-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.match-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.15s;
+}
+
+.match-item.correct {
+    border-color: var(--accent-green);
+    background: rgba(63, 185, 80, 0.1);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+.match-tier-btns {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.tier-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.8rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.tier-btn:hover {
+    border-color: var(--accent);
+}
+
+.tier-btn.selected {
+    border-color: var(--accent);
+    background: rgba(88, 166, 255, 0.15);
+}
+
+.tier-btn.correct {
+    border-color: var(--accent-green);
+    background: rgba(63, 185, 80, 0.15);
+    pointer-events: none;
+}
+
+.tier-btn.wrong {
+    border-color: var(--accent-red);
+    animation: shake 0.3s;
+}
+
+.match-status {
+    margin-left: auto;
+    font-size: 1.2rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* ---- Ordering Game (Unit 4) ---- */
+.ordering-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.order-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    transition: border-color 0.15s;
+}
+
+.order-item.correct {
+    border-color: var(--accent-green);
+}
+
+.order-item .order-num {
+    min-width: 28px;
+    height: 28px;
+    background: var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.order-item.correct .order-num {
+    background: var(--accent-green);
+    color: #000;
+}
+
+.order-item .order-text {
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.order-item .order-arrows {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.order-item .arrow-btn {
+    background: var(--border);
+    border: 2px solid transparent;
+    color: var(--text);
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.order-item .arrow-btn:hover {
+    background: var(--accent);
+}
+
+.order-item .arrow-btn.picked {
+    background: var(--accent);
+    color: #000;
+    border-color: #fff;
+}
+
+/* prevent mobile bounce */
+.order-item .arrow-btn,
+.tier-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+/* ---- Checklist Game (Unit 5) ---- */
+.checklist-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.check-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.check-item:hover {
+    border-color: var(--accent);
+}
+
+.check-item.checked {
+    border-color: var(--accent-green);
+    background: rgba(63, 185, 80, 0.1);
+}
+
+.check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.8rem;
+}
+
+.check-item.checked .check-box {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+    color: #000;
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background: #79c0ff;
+}
+
+.btn-secondary {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+}
+
+.game-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* ---- Feedback Form ---- */
+.feedback-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.feedback-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.btn-submit {
+    background: var(--accent-green);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background: #56d364;
+}
+
+.feedback-result {
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+    display: none;
+}
+
+.feedback-result.show {
+    display: block;
+}
+
+.btn-copy {
+    margin-top: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+/* ---- QR Code Page ---- */
+.qr-section {
+    text-align: center;
+    padding: 40px 16px;
+}
+
+.qr-input-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.qr-input-group input {
+    flex: 1;
+    padding: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.qr-input-group button {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#qr-output {
+    margin: 20px auto;
+    display: inline-block;
+}
+
+#qr-output img,
+#qr-output canvas {
+    border-radius: 8px;
+}
+
+/* ---- Result Screen ---- */
+.result-screen {
+    text-align: center;
+    padding: 40px 16px;
+}
+
+.result-screen .result-emoji {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.result-screen .result-score {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-green);
+    margin-bottom: 8px;
+}
+
+.result-screen .result-msg {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.2rem;
+    }
+
+    .unit-card {
+        padding: 12px;
+    }
+
+    .question-card {
+        padding: 16px;
+    }
+}

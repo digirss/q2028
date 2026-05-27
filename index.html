@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 時代生存指南 - Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>AI 時代生存指南</h1>
+    <div class="subtitle">掃完 QR Code 開始複習 + 小遊戲</div>
+</div>
+
+<div class="score-bar">
+    <span>得分：<span class="score" id="total-score">0</span> / <span id="total-max">0</span></span>
+    <div class="progress" id="progress-dots"></div>
+    <button class="btn-reset" onclick="resetAll()">🔄 重來</button>
+</div>
+
+<!-- ===== 主頁：單元列表 ===== -->
+<div class="main" id="home-page">
+    <div class="unit-grid" id="unit-grid"></div>
+
+    <!-- Feedback -->
+    <div class="feedback-section">
+        <h2>💬 留言給 Leon</h2>
+        <div class="form-group">
+            <label>你的名字</label>
+            <input type="text" id="fb-name" placeholder="王大明">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="fb-email" placeholder="daming@example.com">
+        </div>
+        <div class="form-group">
+            <label>Line / 電話 / 其他聯絡方式</label>
+            <input type="text" id="fb-contact" placeholder="@daming 或 0912-345-678">
+        </div>
+        <div class="form-group">
+            <label>你想聊什麼？</label>
+            <textarea id="fb-message" placeholder="想找你討論 AI Agent 的應用..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="submitFeedback()">送出留言</button>
+        <div class="feedback-result" id="feedback-result"></div>
+    </div>
+</div>
+
+<!-- ===== 單元1：密碼三大地雷 ===== -->
+<div class="main game-page" id="game-1">
+    <div class="game-header">
+        <button class="btn-back" onclick="goHome()">← 返回</button>
+        <div class="game-title">🔒 密碼三大地雷</div>
+    </div>
+    <div id="game-1-content"></div>
+</div>
+
+<!-- ===== 單元2：帳號分流策略 ===== -->
+<div class="main game-page" id="game-2">
+    <div class="game-header">
+        <button class="btn-back" onclick="goHome()">← 返回</button>
+        <div class="game-title">🏦 帳號分流策略</div>
+    </div>
+    <div id="game-2-content"></div>
+</div>
+
+<!-- ===== 單元3：AI 幻覺真實案例 ===== -->
+<div class="main game-page" id="game-3">
+    <div class="game-header">
+        <button class="btn-back" onclick="goHome()">← 返回</button>
+        <div class="game-title">🤖 AI 幻覺真實案例</div>
+    </div>
+    <div id="game-3-content"></div>
+</div>
+
+<!-- ===== 單元4：AI 發展四階段 ===== -->
+<div class="main game-page" id="game-4">
+    <div class="game-header">
+        <button class="btn-back" onclick="goHome()">← 返回</button>
+        <div class="game-title">🚀 AI 發展四階段</div>
+    </div>
+    <div id="game-4-content"></div>
+</div>
+
+<!-- ===== 單元5：30天行動方案 ===== -->
+<div class="main game-page" id="game-5">
+    <div class="game-header">
+        <button class="btn-back" onclick="goHome()">← 返回</button>
+        <div class="game-title">📅 30天行動方案</div>
+    </div>
+    <div id="game-5-content"></div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

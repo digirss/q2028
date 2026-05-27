@@ -81,13 +81,13 @@ body {
     padding: 16px 20px;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .score-bar .score {
     color: var(--accent-green);
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
 }
 
 .score-bar .progress {
@@ -99,9 +99,9 @@ body {
     background: none;
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 8px 18px;
+    padding: 10px 20px;
     border-radius: 8px;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     cursor: pointer;
     font-weight: 600;
 }
@@ -699,14 +699,40 @@ body {
 /* ---- Responsive ---- */
 @media (max-width: 480px) {
     .header h1 {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
+    }
+
+    .header-qr img {
+        width: 140px;
+        height: 140px;
     }
 
     .unit-card {
-        padding: 12px;
+        padding: 18px 14px;
+    }
+
+    .unit-card .unit-icon {
+        font-size: 2.2rem;
+    }
+
+    .unit-card .unit-info h3 {
+        font-size: 1.15rem;
+    }
+
+    .unit-card .unit-info p {
+        font-size: 1rem;
     }
 
     .question-card {
-        padding: 16px;
+        padding: 20px;
+    }
+
+    .question-card h3 {
+        font-size: 1.15rem;
+    }
+
+    .question-card .option {
+        font-size: 1.05rem;
+        padding: 14px;
     }
 }
